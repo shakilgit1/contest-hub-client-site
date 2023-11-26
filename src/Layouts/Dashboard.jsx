@@ -1,14 +1,13 @@
-import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaShopify, FaShoppingCart,FaUsers,  FaUtensils } from "react-icons/fa";
+import { FaAd,  FaCalendar, FaHome, FaList, FaShoppingCart,FaUsers, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
-// import useAdmin from "../hooks/useAdmin";
-// import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
+
 
 const Dashboard = () => {
     // get isAdmin value from the database
-    // const [isAdmin] = useAdmin();
-    // const [cart] = useCart();
-     const isAdmin = true;
-    // // console.log(isAdmin);
+    const [isAdmin] = useAdmin();
+    // console.log(isAdmin);
+   
 
     return (
         <div className="flex">
@@ -16,30 +15,16 @@ const Dashboard = () => {
              <ul className="menu">
                 {
                   isAdmin? <>
-                  <li><NavLink to="/dashboard/adminHome">
-                    <FaHome></FaHome>
-                    Admin Home</NavLink>
-                </li>
-                <li><NavLink to="/dashboard/addItems">
-                    <FaUtensils></FaUtensils>
-                    Add Items</NavLink>
-                </li>
-                <li><NavLink to="/dashboard/manageItems">
+
+                <li><NavLink to="/dashboard/manageContest">
                      <FaList></FaList>
-                     Mange Items
-                    </NavLink>
-                </li>
-              
-                <li>
-                    <NavLink to="/dashboard/bookings">
-                    <FaBook></FaBook>
-                    Manage Bookings
+                     Manage Contest
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/dashboard/users">
                      <FaUsers></FaUsers>
-                      All Users
+                      Manage User
                     </NavLink>
                 </li>
                   </> 
@@ -79,15 +64,7 @@ const Dashboard = () => {
                     <FaHome></FaHome>
                     Home</NavLink>
                 </li>
-                <li><NavLink to="/order/salad">
-                    <FaShopify></FaShopify>
-                    Menu</NavLink>
-                </li>
-                {/*  */}
-                <li><NavLink to="/contact">
-                    <FaEnvelope></FaEnvelope>
-                    Contact</NavLink>
-                </li>
+              
              </ul>
             </div>
             <div className="flex-1 p-8">

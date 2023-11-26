@@ -31,6 +31,24 @@ const AllUsers = () => {
      })
   }
 
+  const handleMakeCreator = user => {
+   
+     axiosSecure.patch(`/user/${user._id}`)
+     .then(res => {
+        console.log(res.data);
+        if(res.data.modifiedCount > 0){
+            refetch();
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `${user.name} is now contest creator`,
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+     })
+  }
+
   const handleDelete = (user) => {
     
     Swal.fire({
@@ -75,7 +93,8 @@ const AllUsers = () => {
                   <th>Name</th>
                   <th>Email</th>
                   <th>Role</th>
-                  <th>Action</th>
+                  <th>Make Admin</th>
+                  <th>Make Creator</th>
                   <th>Delete</th>
                 </tr>
               </thead>
@@ -94,6 +113,15 @@ const AllUsers = () => {
                 
                   <button 
                   onClick={() => handleMakeAdmin(user)} 
+                  className="btn btn-sm text-white bg-orange-300">
+                    <FaEdit></FaEdit>
+                  </button>
+                  
+                  </td>
+                  <td>
+                
+                  <button 
+                  onClick={() => handleMakeCreator(user)} 
                   className="btn btn-sm text-white bg-orange-300">
                     <FaEdit></FaEdit>
                   </button>

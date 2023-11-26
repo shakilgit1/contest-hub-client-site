@@ -1,12 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAdmin from "../../hooks/useAdmin";
 
 
 
 const Navbar = () => {
-//   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   const {user, logOut} = useAuth();
+
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -79,11 +81,17 @@ const Navbar = () => {
           className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 my-4"
         >
           <span className="ml-3 font-bold mb-2">{user?.displayName}</span>
-          <li>
+          {user && isAdmin &&  <li>
+            <Link to="/dashboard/users" className="justify-between text-lg mb-2 hover:bg-red-400">
+           Dashboard
+            </Link>
+          </li>}
+
+          {user && !isAdmin && <li>
             <Link to="/dashboard" className="justify-between text-lg mb-2 hover:bg-red-400">
            Dashboard
             </Link>
-          </li>
+          </li>}
          
           
            <span> <Link to="/login"  className="btn-sm mb-2 w-full">
