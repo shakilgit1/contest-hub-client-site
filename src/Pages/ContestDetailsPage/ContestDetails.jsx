@@ -5,11 +5,12 @@ const ContestDetails = () => {
 
   const { image, contestName, attemptedCount, shortDescription, contestPrize, deadline } =
     contest || {};
+    console.log(contest);
 
   return (
     <div className="container mx-auto">
         <div className="h-28 w-full">
-            {/* <h2 className="text-6xl font-bold">Register for your competition</h2> */}
+            
         </div>
       <div className="max-w-xs rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100  mb-20">
         <img
