@@ -88,7 +88,7 @@ const Navbar = () => {
           </li>}
 
           {user && !isAdmin && <li>
-            <Link to="/dashboard" className="justify-between text-lg mb-2 hover:bg-red-400">
+            <Link to="/dashboard/myProfile" className="justify-between text-lg mb-2 hover:bg-red-400">
            Dashboard
             </Link>
           </li>}

@@ -9,6 +9,8 @@ import ContestDetails from "../Pages/ContestDetailsPage/ContestDetails";
 import PrivetRoutes from "../PrivetRoutes/PrivetRoutes";
 import Dashboard from "../Layouts/Dashboard";
 import AllUsers from "../Pages/Dashboard/AllUsers";
+import MyProfile from "../Pages/Dashboard/User/MyProfile";
+import AdminRoute from "../PrivetRoutes/AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -46,7 +48,11 @@ const router = createBrowserRouter([
       children: [
         {
           path: 'users',
-          element: <AllUsers></AllUsers>
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+        },
+        {
+          path: 'myProfile',
+          element: <MyProfile></MyProfile>
         }
       ]
     }

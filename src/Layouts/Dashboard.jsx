@@ -1,10 +1,12 @@
-import { FaAd,  FaCalendar, FaHome, FaList, FaShoppingCart,FaUsers, } from "react-icons/fa";
+import { FaCalendar, FaHome, FaList, FaShoppingCart,FaUser,FaUsers, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
 
 
 const Dashboard = () => {
     // get isAdmin value from the database
+    const {user} = useAuth();
     const [isAdmin] = useAdmin();
     // console.log(isAdmin);
    
@@ -13,8 +15,8 @@ const Dashboard = () => {
         <div className="flex">
            <div className="min-h-screen w-64 bg-orange-500">
              <ul className="menu">
-                {
-                  isAdmin? <>
+                
+                 { isAdmin && <>
 
                 <li><NavLink to="/dashboard/manageContest">
                      <FaList></FaList>
@@ -27,37 +29,26 @@ const Dashboard = () => {
                       Manage User
                     </NavLink>
                 </li>
-                  </> 
-                  : 
-                  <>
-                  <li><NavLink to="/dashboard/userHome">
-                    <FaHome></FaHome>
-                    User Home</NavLink>
+                  </> }
+                 
+                 { user && !isAdmin && <>
+                  <li><NavLink to="/dashboard/myProfile">
+                    <FaUser></FaUser>
+                    My Profile</NavLink>
                 </li>
-                <li><NavLink to="/dashboard/cart">
+                <li><NavLink to="/dashboard/myWinningContest">
                     <FaShoppingCart></FaShoppingCart>
-                    My Cart ()</NavLink>
+                    My Winning Contest</NavLink>
                 </li>
-                <li><NavLink to="/dashboard/reservation">
+                <li><NavLink to="/dashboard/myPerticipate">
                      <FaCalendar></FaCalendar>
-                     Reservation
+                     My Perticipated Contest
                     </NavLink>
                 </li>
               
-                <li>
-                    <NavLink to="/dashboard/review">
-                    <FaAd></FaAd>
-                    Add a review
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/dashboard/paymentHistory">
-                     <FaList></FaList>
-                     My Payment History
-                    </NavLink>
-                </li>
-                  </>
-                }
+                  </>}
+              
+
                 {/* shared navLink */}
                 <div className="divider"></div>
                 <li><NavLink to="/">
