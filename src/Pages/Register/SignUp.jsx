@@ -6,17 +6,18 @@ import GoogleLogin from "../../components/SocialLogin/GoogleLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 // import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
     const {createUser, updateUserProfile} = useContext(AuthContext)
     const navigate = useNavigate();
 
    const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -28,28 +29,26 @@ const SignUp = () => {
         console.log(loggedUser);
         updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          navigate('/');
-          return Swal.fire("Registration success");
-          // const userInfo = {
-          //    name: data.name,
-          //    email: data.email
-          // }
+          const userInfo = {
+             name: data.name,
+             email: data.email
+          }
 
-        //   axiosPublic.post(`/user`, userInfo)
-        //   .then(res => {
-        //     if(res.data.insertedId){
-        //       console.log('user added to database');
-        //       reset();
-        //       Swal.fire({
-        //         position: "top-end",
-        //         icon: "success",
-        //         title: "user created successfully",
-        //         showConfirmButton: false,
-        //         timer: 1500
-        //       }); 
-        //       navigate('/');
-        //     }
-        //   })
+          axiosPublic.post(`/user`, userInfo)
+          .then(res => {
+            if(res.data.insertedId){
+             
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Registration success",
+                showConfirmButton: false,
+                timer: 1500
+              }); 
+              navigate('/');
+            }
+          })
          
         })
         .catch(err => {
