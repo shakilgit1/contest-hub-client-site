@@ -7,6 +7,8 @@ import Login from "../Pages/LoginPage/Login";
 import AllContest from "../Pages/AllContest/AllContest";
 import ContestDetails from "../Pages/ContestDetailsPage/ContestDetails";
 import PrivetRoutes from "../PrivetRoutes/PrivetRoutes";
+import Dashboard from "../Layouts/Dashboard";
+import AllUsers from "../Pages/Dashboard/AllUsers";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +39,17 @@ const router = createBrowserRouter([
         }
       ]
     },
+    {
+      path: 'dashboard',
+      element: <Dashboard></Dashboard>,
+      errorElement: <ErrorPage></ErrorPage>,
+      children: [
+        {
+          path: 'users',
+          element: <AllUsers></AllUsers>
+        }
+      ]
+    }
   ]);
 
 export default router;

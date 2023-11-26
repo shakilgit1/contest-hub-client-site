@@ -80,7 +80,7 @@ const Navbar = () => {
         >
           <span className="ml-3 font-bold mb-2">{user?.displayName}</span>
           <li>
-            <Link to="/add-food" className="justify-between text-lg mb-2 hover:bg-red-400">
+            <Link to="/dashboard" className="justify-between text-lg mb-2 hover:bg-red-400">
            Dashboard
             </Link>
           </li>
