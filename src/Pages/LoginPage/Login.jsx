@@ -1,6 +1,6 @@
 
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../components/SocialLogin/GoogleLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
@@ -12,6 +12,9 @@ const Login = () => {
 
     const {logInUser} = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
    const {
     register,
@@ -24,7 +27,7 @@ const Login = () => {
     console.log(data);
     logInUser(data.email, data.password)
     .then(()=>{
-      navigate('/');
+      navigate(from, {replace: true})
       return Swal.fire("Log in success");
     })
     .catch((error) => {

@@ -1,6 +1,6 @@
 import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
@@ -8,13 +8,16 @@ const GoogleLogin = () => {
     const {googleSignIn} = useAuth();
     // const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
 
     const handleGoogleLogin = () => {
         googleSignIn()
         .then(result => {
             console.log(result.user);
-            navigate('/');
+            navigate(from, {replace: true})
             return Swal.fire("Log in success");
             // const userInfo = {
             //     email: result.user?.email,

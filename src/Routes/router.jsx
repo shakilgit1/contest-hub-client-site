@@ -6,6 +6,7 @@ import SignUp from "../Pages/Register/SignUp";
 import Login from "../Pages/LoginPage/Login";
 import AllContest from "../Pages/AllContest/AllContest";
 import ContestDetails from "../Pages/ContestDetailsPage/ContestDetails";
+import PrivetRoutes from "../PrivetRoutes/PrivetRoutes";
 
 const router = createBrowserRouter([
     {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
         {
           path: "/contest/:id",
           loader: ({params}) => fetch(`http://localhost:5000/contest/${params.id}`),
-          element: <ContestDetails></ContestDetails>
+          element: <PrivetRoutes><ContestDetails></ContestDetails></PrivetRoutes>
         },
         {
           path: "/signUp",
