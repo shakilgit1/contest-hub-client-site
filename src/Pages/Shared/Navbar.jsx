@@ -2,11 +2,13 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAdmin from "../../hooks/useAdmin";
+import useCreator from "../../hooks/useCreator";
 
 
 
 const Navbar = () => {
   const [isAdmin] = useAdmin();
+  const [isCreator] = useCreator();
   const {user, logOut} = useAuth();
 
   const handleLogOut = () => {
@@ -86,8 +88,13 @@ const Navbar = () => {
            Dashboard
             </Link>
           </li>}
+          {user && isCreator &&  <li>
+            <Link to="/dashboard/myCreatedContest" className="justify-between text-lg mb-2 hover:bg-red-400">
+           Dashboard
+            </Link>
+          </li>}
 
-          {user && !isAdmin && <li>
+          {user && !isAdmin && !isCreator && <li>
             <Link to="/dashboard/myProfile" className="justify-between text-lg mb-2 hover:bg-red-400">
            Dashboard
             </Link>

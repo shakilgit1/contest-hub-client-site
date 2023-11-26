@@ -2,7 +2,7 @@
 const MyProfile = () => {
     return (
         <div>
-            user profile
+            <h2 className="text-center text-4xl">My Profile</h2>
         </div>
     );
 };

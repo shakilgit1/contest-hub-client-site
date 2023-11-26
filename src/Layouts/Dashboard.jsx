@@ -1,14 +1,16 @@
-import { FaCalendar, FaHome, FaList, FaShoppingCart,FaUser,FaUsers, } from "react-icons/fa";
+import { FaAd, FaCalendar, FaHome, FaList, FaShoppingCart,FaUser,FaUsers, } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
+import useCreator from "../hooks/useCreator";
 
 
 const Dashboard = () => {
     // get isAdmin value from the database
     const {user} = useAuth();
     const [isAdmin] = useAdmin();
-    // console.log(isAdmin);
+    const [isCreator] = useCreator();
+    console.log(isCreator);
    
 
     return (
@@ -30,8 +32,28 @@ const Dashboard = () => {
                     </NavLink>
                 </li>
                   </> }
+                 { isCreator && <>
+
+                <li><NavLink to="/dashboard/addContest">
+                     <FaAd></FaAd>
+                     Add Contest
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/dashboard/myCreatedContest">
+                    <FaList></FaList>
+                    My Created Contest
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/dashboard/submittedContest">
+                     <FaUsers></FaUsers>
+                    Contest Submitted Page
+                    </NavLink>
+                </li>
+                  </> }
                  
-                 { user && !isAdmin && <>
+                 { user && !isAdmin && !isCreator && <>
                   <li><NavLink to="/dashboard/myProfile">
                     <FaUser></FaUser>
                     My Profile</NavLink>
