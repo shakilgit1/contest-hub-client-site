@@ -18,6 +18,7 @@ import CreatorRoute from "../PrivetRoutes/CreatorRoute";
 import ManageContest from "../Pages/Dashboard/ManageContest/ManageContest";
 import MyPerticipatedContest from "../Pages/Dashboard/User/MyPerticipatedContest";
 import MyWinningContest from "../Pages/Dashboard/User/MyWinningContest";
+import UpdateContest from "../Pages/Dashboard/Contest Creator/UpdateContest";
 
 const router = createBrowserRouter([
     {
@@ -74,6 +75,11 @@ const router = createBrowserRouter([
         {
           path: 'submittedContest',
           element: <CreatorRoute><SubmittedContests></SubmittedContests></CreatorRoute>
+        },
+        {
+          path: 'updateItem/:id',
+          element: <CreatorRoute><UpdateContest></UpdateContest></CreatorRoute>,
+          loader: ({params}) => fetch(`http://localhost:5000/contest/${params.id}`)
         },
 
         // users routes

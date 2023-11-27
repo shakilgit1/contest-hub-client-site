@@ -21,6 +21,9 @@ const AllContest = () => {
     })
   }, [axiosPublic, currentPage, itemsPerPage])
 
+  // const filterAccepted = searchItems?.filter(item => item.status === 'pending');
+  // console.log(filterAccepted);
+
   // const { data } = useQuery({
   //   queryKey: ["contests"],
   //   queryFn: async () => {
@@ -78,7 +81,7 @@ const AllContest = () => {
       </div>
 
       <h2 className="text-3xl text-center my-8 font-semibold">
-        See Our All Contest{" "}
+        See Our All Contest
       </h2>
       <div className="md:flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">

@@ -90,6 +90,7 @@ const MyCreatedContest = () => {
               <td>{item.type}</td>
               <td>{item.status}</td>
               <td>
+                
                 {item?.status === 'accepted' ? <button 
                   disabled
                   className="btn btn-ghost btn-sm text-red-400">
