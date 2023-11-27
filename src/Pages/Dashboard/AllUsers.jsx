@@ -130,6 +130,7 @@ const AllUsers = () => {
                   
                   <td>
                   <button 
+                  disabled
                   onClick={() => handleDelete(user)} 
                   className="btn btn-ghost btn-sm text-red-400">
                     <FaTrashAlt></FaTrashAlt>

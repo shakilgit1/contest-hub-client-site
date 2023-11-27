@@ -10,7 +10,7 @@ const Dashboard = () => {
     const {user} = useAuth();
     const [isAdmin] = useAdmin();
     const [isCreator] = useCreator();
-    console.log(isCreator);
+    // console.log(isCreator);
    
 
     return (

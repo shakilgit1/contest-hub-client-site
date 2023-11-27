@@ -3,19 +3,31 @@ import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 // import { useEffect, useState } from "react";
-import useContest from "../../../hooks/useContest";
+// import useContest from "../../../hooks/useContest";
+import useAuth from "../../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const MyCreatedContest = () => {
+  const {user} = useAuth();
   const axiosSecure = useAxiosSecure();
 //   const [myContest, setMyContest] = useState();
-  const [contests, refetch] = useContest();
+//   const [contests, refetch] = useContest();
+
+
+  const {data: myContest = [], refetch} = useQuery({
+     queryKey: ['myContest'],
+     queryFn: async() => {
+        const res = await axiosSecure.get(`/contest?email=${user?.email}`)
+        return res.data;
+     }
+  })
 
 //   useEffect(() => {
-//     axiosSecure.get(`/contest`)
+//     axiosSecure.get(`/contest?email=${user?.email}`)
 //     .then(res => {
 //         setMyContest(res.data);
 //     })
-//   }, [axiosSecure])
+//   }, [axiosSecure, user?.email])
 
 
   const handleDeleteItem = item => {
@@ -66,7 +78,7 @@ const MyCreatedContest = () => {
             <tbody>
             
               {
-              contests?.map((item, index) => <tr key={item._id}>
+              myContest?.map((item, index) => <tr key={item._id}>
               <td>
               {index + 1}
               </td>
