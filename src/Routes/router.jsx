@@ -19,6 +19,7 @@ import ManageContest from "../Pages/Dashboard/ManageContest/ManageContest";
 import MyPerticipatedContest from "../Pages/Dashboard/User/MyPerticipatedContest";
 import MyWinningContest from "../Pages/Dashboard/User/MyWinningContest";
 import UpdateContest from "../Pages/Dashboard/Contest Creator/UpdateContest";
+import Payment from "../Pages/Dashboard/User/Payment";
 
 const router = createBrowserRouter([
     {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/contest/:id",
-          loader: ({params}) => fetch(`https://contest-hub-server.vercel.app/contest/${params.id}`),
+          loader: ({params}) => fetch(`http://localhost:5000/contest/${params.id}`),
           element: <PrivetRoutes><ContestDetails></ContestDetails></PrivetRoutes>
         },
         {
@@ -79,13 +80,18 @@ const router = createBrowserRouter([
         {
           path: 'updateItem/:id',
           element: <CreatorRoute><UpdateContest></UpdateContest></CreatorRoute>,
-          loader: ({params}) => fetch(`https://contest-hub-server.vercel.app/contest/${params.id}`)
+          loader: ({params}) => fetch(`http://localhost:5000/contest/${params.id}`)
         },
 
         // users routes
         {
           path: 'myProfile',
           element: <MyProfile></MyProfile>
+        },
+        {
+          path: 'payment/:id',
+          element: <Payment></Payment>,
+          loader: ({params}) => fetch(`http://localhost:5000/contest/${params.id}`)
         },
         {
           path: 'myWinningContest',

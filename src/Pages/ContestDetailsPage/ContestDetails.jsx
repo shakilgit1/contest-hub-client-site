@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 const ContestDetails = () => {
     const contest = useLoaderData();
 
-  const { image, contestName, attemptedCount, shortDescription, contestPrize, deadline } =
+  const {_id, image, contestName, attemptedCount, shortDescription, contestPrize, deadline } =
     contest || {};
     // console.log(contest);
 
@@ -35,7 +35,7 @@ const ContestDetails = () => {
                   {shortDescription}
                 </p>
               </div>
-              <Link to="">
+              <Link to={`/dashboard/payment/${_id}`}>
                 <button
                   type="button"
                   className="flex items-center justify-center w-full p-3 font-semibold tracki rounded-md dark:bg-violet-400 dark:text-gray-900 btn"
