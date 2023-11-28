@@ -2,12 +2,19 @@ import { useEffect, useState } from "react";
 // import Banner from "../Banner/Banner";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import ContestCard from "../../AllContest/ContestCard";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Home = () => {
     const [popularItem, setPopularItem] = useState([]);
     const [searching, setSearching] = useState('');
     const axiosPublic = useAxiosPublic();
-   
+
+    useEffect(() => {
+      AOS.init({duration:"1000", delay:"500"});
+    
+    }, []);
+
     useEffect(() => {
         axiosPublic.get(`/popular?sort=desc&search=${searching}`)
         .then(res => {
@@ -56,10 +63,10 @@ const Home = () => {
       </div>
 
             <div className="container mx-auto my-8">
-                <h2 className="text-3xl text-center font-semibold mb-8">Our Popular Contest </h2>
+                <h2 data-aos="fade-up" className="text-3xl text-center font-semibold mb-8">Our Popular Contest </h2>
                 <div>
                 <div className="md:flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 {popularItem?.slice(0, 6).map(contest => <ContestCard key={contest._id} contest={contest}></ContestCard>)}
             </div>
             </div>

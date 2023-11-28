@@ -81,6 +81,7 @@ const CheckOutForm = ({ item }) => {
         const payment = {
           transactionId: paymentIntent.id,
           email: user?.email,
+          name: user?.displayName,
           contestName: item.contestName,
           type: item.type,
           contestPrize: item.contestPrize,

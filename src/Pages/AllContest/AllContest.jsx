@@ -21,8 +21,7 @@ const AllContest = () => {
     })
   }, [axiosPublic, currentPage, itemsPerPage])
 
-  // const filterAccepted = searchItems?.filter(item => item.status === 'pending');
-  // console.log(filterAccepted);
+  
 
   // const { data } = useQuery({
   //   queryKey: ["contests"],
