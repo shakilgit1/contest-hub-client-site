@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import { FaEdit } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 
@@ -8,7 +8,7 @@ const SubmittedContests = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
 
-    const {data: submitted = [], refetch} = useQuery({
+    const {data: submitted = []} = useQuery({
         queryKey: ['submitted'],
         queryFn: async () =>{
             const res = await axiosSecure.get(`/payments?email=${user?.email}`)
@@ -16,21 +16,21 @@ const SubmittedContests = () => {
         }
     }) 
 
-    const handleConfirm = item => {
-        axiosSecure.patch(`/confirm/${item._id}`)
-        .then(res => {
-         if(res.data.modifiedCount > 0){
-             refetch();
-             Swal.fire({
-               position: "top-end",
-               icon: "success",
-               title: `${item.contestName} is now accepted`,
-               showConfirmButton: false,
-               timer: 1500
-             });
-           }
-        })
-     }
+    // const handleConfirm = item => {
+    //     axiosSecure.patch(`/confirm/${item._id}`)
+    //     .then(res => {
+    //      if(res.data.modifiedCount > 0){
+    //          refetch();
+    //          Swal.fire({
+    //            position: "top-end",
+    //            icon: "success",
+    //            title: `${item.contestName} is now accepted`,
+    //            showConfirmButton: false,
+    //            timer: 1500
+    //          });
+    //        }
+    //     })
+    //  }
 
     return (
         <div>
@@ -83,13 +83,13 @@ const SubmittedContests = () => {
                 <td>{item.task.slice(0,20)}...</td>
                 <td>
                   
-                  {item?.status === 'accepted' ? <button 
+                  {item?.status === 'winner' ? <button 
                     disabled
                     className="btn btn-ghost btn-sm text-red-400">
                      <FaEdit></FaEdit>
                     </button> : 
                     <button 
-                    onClick={() => handleConfirm(item)}
+                    
                     className="btn btn-ghost btn-sm text-red-400">
                      <FaEdit></FaEdit>
                     </button>
