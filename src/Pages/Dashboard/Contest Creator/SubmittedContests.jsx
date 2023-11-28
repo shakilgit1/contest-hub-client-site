@@ -2,14 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaEdit } from "react-icons/fa";
+import useAuth from "../../../hooks/useAuth";
 
 const SubmittedContests = () => {
     const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
 
     const {data: submitted = [], refetch} = useQuery({
         queryKey: ['submitted'],
         queryFn: async () =>{
-            const res = await axiosSecure.get(`/payments`)
+            const res = await axiosSecure.get(`/payments?email=${user?.email}`)
             return res.data;
         }
     }) 
@@ -46,6 +48,7 @@ const SubmittedContests = () => {
                   <th>Perticipated Email</th>
                   <th>Contest Name</th>
                   <th>Contest Deadline</th>
+                  <th>Task</th>
                   <th>Confirm Winner</th>
                  
                 </tr>
@@ -74,9 +77,10 @@ const SubmittedContests = () => {
                  {item?.name}
                 
                 </td>
-                <td>{item.email}</td>
+                <td>{item.userEmail}</td>
                 <td>{item.contestName}</td>
                 <td>{item.deadline}</td>
+                <td>{item.task.slice(0,20)}...</td>
                 <td>
                   
                   {item?.status === 'accepted' ? <button 

@@ -80,7 +80,9 @@ const CheckOutForm = ({ item }) => {
         // now save payment into database
         const payment = {
           transactionId: paymentIntent.id,
-          email: user?.email,
+          userEmail: user?.email,
+          email: item.email,
+          contestId: item._id,
           name: user?.displayName,
           contestName: item.contestName,
           type: item.type,

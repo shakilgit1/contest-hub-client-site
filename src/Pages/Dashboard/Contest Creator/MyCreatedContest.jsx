@@ -59,7 +59,7 @@ const MyCreatedContest = () => {
 
   return (
     <div>
-    
+      <h2 className="text-4xl text-center mb-8">My Created Contests</h2>
       <div>
         <div className="overflow-x-auto">
           <table className="table">
