@@ -1,8 +1,26 @@
-# React + Vite
+# Contest Hub Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Contest Hub website, a platform where users can participate in contests, win prizes, and creators can manage contests. The system also includes an admin interface for managing contests, users, and roles.
 
-Currently, two official plugins are available:
+## Website Link
+https://contest-hub-website.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Features
+1. **User Features:**
+    - Participate in contests
+    - View contest details
+    - Win prizes
+
+2. **Contest Creator Features:**
+    - Add new contests
+    - Update existing contests
+    - Delete contests
+    - Select winners from users
+
+3. **Admin Features:**
+    - View all contests
+    - Accept/Reject contests
+    - Delete contests
+    - View user login history
+    - Grant admin or creator roles to users
