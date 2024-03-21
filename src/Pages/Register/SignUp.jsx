@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import ScrollToTop from "../../hooks/scrollTop";
 // import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -66,6 +67,7 @@ const SignUp = () => {
 
   return (
     <div className="hero min-h-screen">
+      <ScrollToTop></ScrollToTop>
       <div className="hero-content flex-col lg:flex-row">
         <div className="w-1/2 mr-12"></div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 my-20">

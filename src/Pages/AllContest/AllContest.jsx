@@ -2,12 +2,14 @@ import ContestCard from "./ContestCard";
 // import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
+import ScrollToTop from "../../hooks/scrollTop";
 
 const AllContest = () => {
   const [searchItems, setSearchItems] = useState([]);
   // console.log(searchItems);
+  const [category, setCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(9);
   const [count, setCount] = useState(0);
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
@@ -15,11 +17,11 @@ const AllContest = () => {
   const axiosPublic = useAxiosPublic();
   // eslint-disable-next-line no-unused-vars
   useEffect(() => {
-    axiosPublic.get(`/contest?page=${currentPage}&size=${itemsPerPage}`)
+    axiosPublic.get(`/contest?page=${currentPage}&size=${itemsPerPage}&type=${category}`)
     .then(res => {
       setSearchItems(res.data);
     })
-  }, [axiosPublic, currentPage, itemsPerPage])
+  }, [axiosPublic, currentPage, itemsPerPage, category])
 
   
 
@@ -38,6 +40,7 @@ const AllContest = () => {
       setCount(res.data.count);
     });
   }, [axiosPublic]);
+
 
   const handleItemsPerPage = (e) => {
     const value = parseInt(e.target.value);
@@ -61,6 +64,7 @@ const AllContest = () => {
 
   return (
     <div>
+      <ScrollToTop></ScrollToTop>
       <div
         className="hero min-h-[70vh]"
         style={{
@@ -79,16 +83,31 @@ const AllContest = () => {
         </div>
       </div>
 
+      <h2 className="text-center my-8 font-semibold">
+        <button onClick={()=> setCategory("")} className="btn btn-xs bg-blue-600 hover:bg-red-500 mr-2">All</button>
+        <button onClick={()=> setCategory("Gaming")} className="btn btn-xs bg-blue-600 hover:bg-red-500 mr-2">Gaming</button>
+        <button onClick={()=> setCategory("Article Writing")} className="btn btn-xs bg-blue-600 hover:bg-red-500 mr-2">Article</button>
+        <button onClick={()=> setCategory("Medical Contest")} className="btn btn-xs bg-blue-600 hover:bg-red-500 mr-2">Medical</button>
+        <button onClick={()=> setCategory("Business Contest")} className="btn btn-xs bg-blue-600 hover:bg-red-500">Business</button>
+      </h2>
+      
       <h2 className="text-3xl text-center my-8 font-semibold">
         See Our All Contest
       </h2>
-      <div className="md:flex justify-center">
+      <h1 className="text-center">
+
+         {searchItems.length===0 && <span className="loading loading-spinner loading-lg"></span>}
+         </h1>
+
+      <div className="md:flex justify-center mx-auto w-9/12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {searchItems?.map((contest) => (
             <ContestCard key={contest._id} contest={contest}></ContestCard>
           ))}
         </div>
       </div>
+
+            {category && currentPage!==0 && <p className="text-center">Please select page 1 to see filter item</p>}
 
       <div className="text-center my-8">
         <p className="mb-4">Current page: {currentPage + 1}</p>

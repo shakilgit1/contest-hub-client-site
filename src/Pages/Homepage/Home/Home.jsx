@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import ContestCard from "../../AllContest/ContestCard";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import ScrollToTop from "../../../hooks/scrollTop";
 
 const Home = () => {
   const [popularItem, setPopularItem] = useState([]);
@@ -29,6 +30,7 @@ const Home = () => {
 
   return (
     <div>
+      <ScrollToTop></ScrollToTop>
       <div
         className="hero min-h-[70vh]"
         style={{
@@ -64,8 +66,13 @@ const Home = () => {
         >
           Our Popular Contest
         </h2>
+        
+         <h1 className="text-center">
+         {popularItem.length===0 && <span className="loading loading-spinner loading-lg"></span>}
+         </h1>
+
         <div>
-          <div className="md:flex justify-center">
+          <div className="md:flex justify-center mx-auto w-9/12">
             <div
               
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
