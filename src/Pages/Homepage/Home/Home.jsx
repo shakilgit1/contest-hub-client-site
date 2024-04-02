@@ -5,6 +5,7 @@ import ContestCard from "../../AllContest/ContestCard";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ScrollToTop from "../../../hooks/scrollTop";
+import Reviews from "./Reviews";
 
 const Home = () => {
   const [popularItem, setPopularItem] = useState([]);
@@ -62,9 +63,9 @@ const Home = () => {
       <div className="container mx-auto my-8">
         <h2
           data-aos="fade-up"
-          className="text-3xl text-center font-semibold mb-8"
+          className="text-5xl text-center font-semibold mb-8"
         >
-          Our Popular Contest
+          Our <span className="text-red-400">Popular</span> Contest
         </h2>
         
          <h1 className="text-center">
@@ -86,8 +87,8 @@ const Home = () => {
       </div>
 
       <div>
-        <h2 data-aos="fade-up" className="text-3xl text-center font-semibold my-8">
-          Our Featured Contests
+        <h2 data-aos="fade-up" className="text-5xl text-center font-semibold my-8">
+          Our <span className="text-blue-500">Featured</span> Contests
         </h2>
         <section className="p-4 lg:p-8 dark:bg-gray-800 dark:text-gray-100">
           <div className="container mx-auto space-y-12">
@@ -171,7 +172,7 @@ const Home = () => {
       </div>
 
       <div>
-        <h2 data-aos="fade-up" className="text-3xl text-center font-semibold my-8">You may also like</h2>
+        <h2 data-aos="fade-up" className="text-5xl text-center font-semibold my-8">You may also like</h2>
         <section data-aos="fade-up" className="py-6 dark:bg-gray-800">
           <div className="container flex flex-col justify-center p-4 mx-auto">
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2">
@@ -194,6 +195,10 @@ const Home = () => {
             </div>
           </div>
         </section>
+      </div>
+
+      <div>
+        <Reviews></Reviews>
       </div>
 
     </div>
